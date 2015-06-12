@@ -82,7 +82,7 @@ class MapTest extends PHPUnit_Framework_TestCase {
 
 	public function testMap() {
 		$map = new Map([[1, 1], [2, 2]]);
-		$this->assertEquals(new ArrayList([2, 4]), $map->map(function($key, $value) {
+		$this->assertEquals(new ArrayList([2, 4]), $map->map(function($value, $key) {
 			return $key + $value;
 		}));
 	}

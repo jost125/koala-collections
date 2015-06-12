@@ -72,7 +72,13 @@ class ArrayList implements ICollection {
 	}
 
 	public function unique() {
-		return new static(array_values(array_unique($this->items)));
+		$unique = [];
+		foreach ($this->items as $item) {
+			if (!in_array($item, $unique)) { // o(n^2) !!! optimization needed
+				$unique[] = $item;
+			}
+		}
+		return new static($unique);
 	}
 
 	public function filter(callable $filterCallback) {
