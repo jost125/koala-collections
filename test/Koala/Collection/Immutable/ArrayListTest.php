@@ -2,7 +2,6 @@
 
 namespace Koala\Collection\Immutable;
 
-use Directory;
 use PHPUnit_Framework_TestCase;
 
 class ArrayListTest extends PHPUnit_Framework_TestCase {
