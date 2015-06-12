@@ -7,7 +7,7 @@ use IteratorAggregate;
 use JsonSerializable;
 use Koala\Collection\Immutable\ArrayList;
 
-interface IList extends IteratorAggregate, Countable, JsonSerializable {
+interface ICollection extends IteratorAggregate, Countable, JsonSerializable {
 
 	public function getIterator();
 	public function count();
@@ -18,7 +18,8 @@ interface IList extends IteratorAggregate, Countable, JsonSerializable {
 	public function map(callable $mapCallback);
 	public function flatten();
 	public function flatMap(callable $mapCallback);
-	public function merge(IList $list);
+	public function merge(ICollection $list);
+	public function unique();
 	public function filter(callable $filterCallback);
 	public function find(callable $findCallback);
 	public function exists(callable $existsCallback);
@@ -29,7 +30,7 @@ interface IList extends IteratorAggregate, Countable, JsonSerializable {
 	public function firstX($numberOfFirstXElements);
 	public function last();
 	public function removeNulls();
-	public function combine(ArrayList $values);
+	public function combine(ICollection $values);
 	public function jsonSerialize();
 
 }

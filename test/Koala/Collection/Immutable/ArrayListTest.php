@@ -78,6 +78,13 @@ class ArrayListTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(new ArrayList([1, 2, 3, 4, 5, 3, 4, 5, 6, 7]), $a->merge($b));
 	}
 
+	public function testUnique() {
+		$a = new ArrayList([1, 1, 2]);
+		$b = $a->unique();
+		$this->assertEquals(new ArrayList([1, 1, 2]), $a);
+		$this->assertEquals(new ArrayList([1, 2]), $b);
+	}
+
 	public function testFilter() {
 		$a = new ArrayList(range(1, 10));
 		$result = $a->filter(function ($i) {

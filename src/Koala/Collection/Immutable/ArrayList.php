@@ -4,10 +4,10 @@ namespace Koala\Collection\Immutable;
 
 use ArrayIterator;
 use JsonSerializable;
-use Koala\Collection\IList;
+use Koala\Collection\ICollection;
 use Traversable;
 
-class ArrayList implements IList {
+class ArrayList implements ICollection {
 
 	protected $items;
 
@@ -67,8 +67,12 @@ class ArrayList implements IList {
 		return $flattened;
 	}
 
-	public function merge(IList $list) {
+	public function merge(ICollection $list) {
 		return new static(array_merge($this->toArray(), $list->toArray()));
+	}
+
+	public function unique() {
+		return new static(array_values(array_unique($this->items)));
 	}
 
 	public function filter(callable $filterCallback) {
@@ -130,7 +134,7 @@ class ArrayList implements IList {
 		});
 	}
 
-	public function combine(ArrayList $values) {
+	public function combine(ICollection $values) {
 		$valuesArray = $values->toArray();
 		return new Map($this->map(function($item, $key) use ($valuesArray) {
 			return [$item, $valuesArray[$key]];
